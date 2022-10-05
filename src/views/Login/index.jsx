@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // libraries
-import Swal from "sweetalert2";
-import axios from 'axios';
+// import Swal from "sweetalert2";
+// import axios from 'axios';
 
 // Components
 import CustomForm from "../../components/Form";
@@ -40,8 +40,12 @@ function Login() {
         // react
 
         formValidation(email, password) &&
+        localStorage.setItem('token', 'gsdf6g54s64a65sd4f6a54df')
+        dispatch(setToken(localStorage.getItem('token')))
+        navigate('/movies')
 
-        axios.post('http://challenge-react.alkemy.org', { email, password })
+
+        /* axios.post('https://challenge-react.alkemy.org', { email, password })
             .then((response) => {
                 const token = response.data.token;
                 localStorage.setItem('token', token)
@@ -53,7 +57,7 @@ function Login() {
                     title: error.response.data.error,
                     icon: 'error'
                 })
-            })
+            }) */
     }
 
     return (
