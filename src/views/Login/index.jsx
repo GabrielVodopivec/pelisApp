@@ -12,8 +12,8 @@ import CustomForm from "../../components/Form";
 // Actions
 import { setToken } from '../../app/actions';
 
-// Services
-import { formValidation } from '../../services'
+// // Services
+// import { formValidation } from '../../services'
 
 function Login() {
     const dispatch = useDispatch();
@@ -21,51 +21,90 @@ function Login() {
 
     const [userInfo, setUserInfo] = React.useState({
         email: '',
-        password: ''
+        password: '',
+        error: {
+            email: '',
+            password: ''
+        }
     })
 
+
+
     const handleChange = (event) => {
-        const userDataLabel = event.target.name
-        const userDataValue = event.target.value
+        const { name, value } = event.target;
         setUserInfo({
             ...userInfo,
-            [userDataLabel]: userDataValue
+            [name]: value
         })
+    }
+
+    const handleBlur = (event) => {
+        const { name, value } = event.target;
+        const emailRegex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+
+        if (!value) {
+            return setUserInfo({
+                ...userInfo,
+                error: {
+                    ...userInfo.error,
+                    [name]: 'Campo obligatorio'
+                }
+            })
+        } else if (name === 'email' && !emailRegex.test(value)) {
+            return setUserInfo({
+                ...userInfo,
+                error: {
+                    ...userInfo.error,
+                    [name]: 'Ingrese un email válido'
+                }
+            })
+        } else {
+            setUserInfo({
+                ...userInfo,
+                error: {
+                    ...userInfo.error,
+                    [name]: ''
+                }
+            })
+        }
+
+
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const { email, password } = userInfo;
+        const token = 'a65d4a65s4d6';
+        localStorage.setItem('token',token);
+        dispatch(setToken(token))
+        navigate('/movies')
+        // const { email, password } = userInfo;
         // challenge@alkemy.org
         // react
 
-        formValidation(email, password) &&
-        localStorage.setItem('token', 'gsdf6g54s64a65sd4f6a54df')
-        dispatch(setToken(localStorage.getItem('token')))
-        navigate('/movies')
-
-
-        /* axios.post('https://challenge-react.alkemy.org', { email, password })
-            .then((response) => {
-                const token = response.data.token;
-                localStorage.setItem('token', token)
-                dispatch(setToken(token))
-                navigate('/movies')
-            })
-            .catch(error => {
-                Swal.fire({
-                    title: error.response.data.error,
-                    icon: 'error'
-                })
-            }) */
+        // axios.post('http://challenge-react.alkemy.org', { email, password })
+        //     .then((response) => {
+        //         const token = response.data.token;
+        //         localStorage.setItem('token', token)
+        //         dispatch(setToken(token))
+        //         navigate('/movies')
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //         Swal.fire({
+        //             title: error.response.data.error,
+        //             icon: 'error'
+        //         })
+        //     })
     }
 
     return (
         <CustomForm
             email={userInfo.email}
             password={userInfo.password}
+            errors={userInfo.error}
             handleChange={handleChange}
-            handleSubmit={handleSubmit} />
+            handleSubmit={handleSubmit}
+            handleBlur={handleBlur} />
     )
 }
 

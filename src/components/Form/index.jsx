@@ -17,8 +17,10 @@ function CustomForm(props) {
                             className="form-control"
                             placeholder="example@mail.com"
                             onChange={props.handleChange}
+                            onBlur={props.handleBlur}
                             value={props.email} />
                     </div>
+                    {props.errors.email ? <p>{props.errors.email}</p> : null}
                 </div>
                 <div className="row py-4">
                     <label
@@ -34,13 +36,21 @@ function CustomForm(props) {
                             className="form-control"
                             placeholder="Password"
                             onChange={props.handleChange}
+                            onBlur={props.handleBlur}
                             value={props.password} />
                     </div>
+                    {props.errors.password ? <p>{props.errors.password}</p> : null}
                 </div>
                 <div className="row py-4 px-4">
                     <button
                         type="submit"
                         className="btn btn-secondary"
+                        disabled={
+                            props.errors.email ||
+                            props.errors.password ||
+                            !props.email ||
+                            !props.password ||
+                            props.isSubmmiting ? true : false}
                     >
                         Login
                     </button>
