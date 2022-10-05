@@ -1,0 +1,75 @@
+body{
+    background-image: url('../assets/images/tickets.jpg');
+    background-position:fixed;
+    background-repeat: no-repeat;
+    background-size:auto;
+    background-attachment: fixed;
+    
+}
+
+.notFound {
+    text-align: center;
+    color: white;
+    margin-top: 50vh;
+}
+
+.customForm {
+    max-width: 600px;
+}
+
+.outlet {
+    color: antiquewhite;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    height: 50px;
+    display: inline-block;
+    padding-left: 2em;
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    background-color: #212529;
+    color: antiquewhite;
+    font-size: 16px;
+    text-align: left;
+    
+}
+
+.footer :nth-child(1) {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    line-height: 50px;
+}
+
+.movieContainer {
+    padding: 2em;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.cardOverview {
+    height: 200px;
+    padding: 0 1em;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.cardOverview::-webkit-scrollbar {
+    
+    width: .3em;
+}
+
+.cardOverview::-webkit-scrollbar-thumb  {
+    color: rgb(90, 67, 67);
+    background-color: gray;
+    border: transparent;
+    border-radius: 5px;
+    
+}
