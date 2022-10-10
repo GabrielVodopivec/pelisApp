@@ -35,7 +35,7 @@ export default function HomeCarousel() {
                                         {
                                             popularMovies.map((movie, index) => {
                                                 let movieClass;
-                                                if (index === 0) {
+                                                if (index === 5) {
                                                     movieClass = "carousel-item active "
                                                 } else {
                                                     movieClass = "carousel-item"
@@ -109,7 +109,7 @@ export default function HomeCarousel() {
                                         {
                                             popularMovies.map((movie, index) => {
                                                 let movieClass;
-                                                if (index === 0) {
+                                                if (index === 12) {
                                                     movieClass = "carousel-item active "
                                                 } else {
                                                     movieClass = "carousel-item"
