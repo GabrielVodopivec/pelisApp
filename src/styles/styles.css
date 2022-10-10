@@ -46,7 +46,7 @@ header {
     padding: 10px;
     width: 100%;
     border-radius: 10px;
-    background-color: #21252963;
+    background-color: #21252997;
 }
 
 @media screen and (max-width: 1200px) {
@@ -122,6 +122,12 @@ header {
 .genresMainContent {
     display: flex;
     gap: 25px;
+}
+
+.genresMainContent span {
+    background-color: brown;
+    border-radius: 5px;
+    padding: 0 10px;
 }
 
 .notFound {
@@ -221,6 +227,7 @@ header {
     }
 
     .overviewMainContent {   
+        font-size: .7em;
         height: 250px;
 
     }
