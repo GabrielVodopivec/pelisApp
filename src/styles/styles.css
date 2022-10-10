@@ -1,10 +1,127 @@
 body{
     background-image: url('../assets/images/tickets.jpg');
-    background-position:fixed;
+    background-position:center;
     background-repeat: no-repeat;
-    background-size:auto;
     background-attachment: fixed;
+    /* background-color: #0b0c0d; */
+   
+
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    min-height: 100vh;
+}
+
+body::-webkit-scrollbar {
     
+    width: .3em;
+}
+
+body::-webkit-scrollbar-thumb  {
+    color: rgb(90, 67, 67);
+    background-color: gray;
+    border: transparent;
+    border-radius: 5px;
+    
+}
+
+header {
+    width: 100%;
+}
+
+.outlet {
+    width: 100%;
+    flex-grow: 1;
+}
+.previewContainer {
+    color:antiquewhite;
+    margin: 0 auto;
+    width: 1150px;
+}
+
+.overlayText {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #21252963;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .previewContainer {
+        
+        width: 100vw;
+    }
+}
+
+.movieDetail {
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    position: relative;
+    background: linear-gradient(to top, rgb(0, 0, 0) 25%, transparent);
+    width: 100%;
+    height: 100vh;  
+}
+
+.imgDetail {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+    height: 45vw;
+    max-height: 590px;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 25px;
+
+    font-size: x-large;
+    padding-left: 5vw;
+    width: 100%;
+    height: inherit;
+    
+    background: linear-gradient(90deg, rgb(0, 0, 0) 35%, transparent);
+    
+    color: antiquewhite;
+}
+
+.mainContent h1 {
+    padding-top: 5vh;
+}
+
+.overviewMainContent {
+    margin: 0;
+    width: 40vw;
+    height: 500px;
+    min-width: 350px;
+    overflow-y: auto;
+    text-align: left;
+}
+
+.overviewMainContent::-webkit-scrollbar {
+    width: .3em;
+}
+
+.overviewMainContent::-webkit-scrollbar-thumb  {
+    color: rgb(90, 67, 67);
+    background-color: gray;
+    border: transparent;
+    border-radius: 5px;
+    
+}
+
+.genresMainContent {
+    display: flex;
+    gap: 25px;
 }
 
 .notFound {
@@ -14,23 +131,27 @@ body{
 }
 
 .customForm {
-    max-width: 600px;
+    margin: 0 auto;
+    width: 500px;
 }
 
-.outlet {
-    color: antiquewhite;
-    height: 100%;
-    display: flex;
-    justify-content: center;
+@media screen and (max-width: 800px) {
+    .customForm {
+        box-sizing: border-box;
+        padding: 0 10px;
+        width: 100vw;
+    }
+    
 }
 
 .footer {
+    box-sizing: border-box;
     height: 50px;
-    display: inline-block;
+    width: 100%;
+    padding-top: 5px;
     padding-left: 2em;
-    width: 100vw;
-    position: absolute;
-    bottom: 0;
+    
+    
     background-color: #212529;
     color: antiquewhite;
     font-size: 16px;
@@ -42,7 +163,7 @@ body{
     height: 100%;
     padding: 0;
     margin: 0;
-    line-height: 50px;
+
 }
 
 .movieContainer {
@@ -50,12 +171,23 @@ body{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
     justify-content: center;
 }
 
+.cardContainer {
+    width: 28rem;
+}
+
+
+@media screen and (max-width: 500px) {
+    .cardContainer {
+        width: 90vw;
+    }
+}
+
 .cardOverview {
-    height: 200px;
+    height: 150px;
     padding: 0 1em;
     overflow-y: auto;
     text-align: justify;
@@ -72,4 +204,27 @@ body{
     border: transparent;
     border-radius: 5px;
     
+}
+
+@media screen and (max-width: 600px) {
+    .movieDetail {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: flex-start;
+    }
+
+    .imgDetail {
+        position: relative;
+        height: auto;
+        width: 100%;
+        z-index: 0;
+    }
+
+    .overviewMainContent {   
+        height: 250px;
+
+    }
+
 }

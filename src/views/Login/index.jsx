@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // libraries
-// import Swal from "sweetalert2";
-// import axios from 'axios';
+import Swal from "sweetalert2";
+import axios from 'axios';
 
 // Components
 import CustomForm from "../../components/Form";
@@ -12,7 +12,7 @@ import CustomForm from "../../components/Form";
 // Actions
 import { setToken } from '../../app/actions';
 
-// // Services
+// Services
 // import { formValidation } from '../../services'
 
 function Login() {
@@ -20,21 +20,30 @@ function Login() {
     const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = React.useState({
-        email: '',
-        password: '',
+        email: 'fakeuser@mail.com',
+        password: 'react',
         error: {
             email: '',
             password: ''
         }
     })
 
-
-
     const handleChange = (event) => {
         const { name, value } = event.target;
-        setUserInfo({
-            ...userInfo,
-            [name]: value
+        setUserInfo((prevUserInfo) => {
+            return {
+                ...prevUserInfo,
+                [name]: value
+            }
+        })
+        setUserInfo((prevUserInfo) => {
+            return {
+                ...prevUserInfo,
+                error: {
+                    ...prevUserInfo.error,
+                    [name]: ''
+                }
+            }
         })
     }
 
@@ -51,50 +60,48 @@ function Login() {
                 }
             })
         } else if (name === 'email' && !emailRegex.test(value)) {
-            return setUserInfo({
-                ...userInfo,
-                error: {
-                    ...userInfo.error,
-                    [name]: 'Ingrese un email válido'
+            return setUserInfo((prevUserInfo) => {
+                return {
+                    ...prevUserInfo,
+                    error: {
+                        ...prevUserInfo.error,
+                        [name]: 'Ingrese un email válido'
+                    }
                 }
             })
         } else {
-            setUserInfo({
-                ...userInfo,
-                error: {
-                    ...userInfo.error,
-                    [name]: ''
+            setUserInfo((prevUserInfo) => {
+                return {
+                    ...prevUserInfo,
+                    error: {
+                        ...prevUserInfo.error,
+                        [name]: ''
+                    }
                 }
             })
         }
-
-
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const token = 'a65d4a65s4d6';
-        localStorage.setItem('token',token);
-        dispatch(setToken(token))
-        navigate('/movies')
-        // const { email, password } = userInfo;
+        const { email, password } = userInfo;
         // challenge@alkemy.org
         // react
 
-        // axios.post('http://challenge-react.alkemy.org', { email, password })
-        //     .then((response) => {
-        //         const token = response.data.token;
-        //         localStorage.setItem('token', token)
-        //         dispatch(setToken(token))
-        //         navigate('/movies')
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //         Swal.fire({
-        //             title: error.response.data.error,
-        //             icon: 'error'
-        //         })
-        //     })
+        axios.post('https://goalsappgvs.herokuapp.com/api/users/login', { email, password })
+            .then(({ data }) => {
+                const { token } = data;
+                localStorage.setItem('token', token)
+                dispatch(setToken(token))
+                navigate('/movies')
+            })
+            .catch(({ response }) => {
+                const { data } = response;
+                Swal.fire({
+                    title: data.message,
+                    icon: 'error'
+                })
+            })
     }
 
     return (

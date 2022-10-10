@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Notfound() {
+    // throw new Error
     return (
         <div className="notFound">
         <h1>Oops! Not Found</h1>

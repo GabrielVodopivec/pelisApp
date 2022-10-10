@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -11,28 +11,55 @@ import './styles/styles.css'
 // Views
 import Home from './views/Home';
 import Login from './views/Login';
-import Notfound from './views/NotFound';
 import Detail from './views/Detail';
 import About from './views/About';
 import Movies from './views/Movies';
 
+import ErrorBoundary from './components/ErrorBoundary';
+import HomeCarousel from './components/HomeCarousel';
+
+// Testing React.lazy load and Suspense Component;
+const Notfound = React.lazy(() => {
+  const myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(import('./views/NotFound'));
+    }, 3000);
+  });
+  return myPromise
+})
+
 const router = createBrowserRouter([{
   path: '/',
   element: <Home />,
-  errorElement: <Notfound />,
+  errorElement:
+    <ErrorBoundary>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Notfound />
+      </Suspense>
+    </ErrorBoundary>,
   children: [{
+    index:true,
+    element: <HomeCarousel />
+  },{
     path: 'login',
     element: <Login />
   }, {
     path: 'movies',
-    element: <Movies />
-  }, {
-    path: 'detail/:movie_id',
-    element: <Detail />,
-    errorElement: <Notfound />
+    element: <Movies />,
+    errorElement:
+    <ErrorBoundary>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Notfound />
+      </Suspense>
+    </ErrorBoundary>,
   }, {
     path: 'about',
     element: <About />
+  }, {
+    path: 'detail/:movie_id',
+    element: <Detail />,
+    errorElement: <Notfound />,
+  
   }]
 }])
 
