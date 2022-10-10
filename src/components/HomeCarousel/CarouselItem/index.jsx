@@ -8,7 +8,7 @@ export default function CarouselItem({ img, title, movieClass, released, banner 
                 <img src={img} className="card-img"  alt="movie" />
                 <div className="card-img-overlay d-flex align-items-center">
                     <div className="overlayText text-center">
-                        <h1 className="mb-0">Peliss App</h1>
+                        <h1 className="mb-0">{banner}</h1>
                         <p >All your favorites {banner}</p>
                         <h1 className="card-title">{title}</h1>
                         <h3>{year}</h3>
