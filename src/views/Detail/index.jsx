@@ -13,6 +13,7 @@ function Detail() {
     const navigate = useNavigate();
 
     let { movie_id } = useParams();
+
     let [movieDetail, setMovieDetail] = useState(null)
     let [error, setError] = useState(false);
 

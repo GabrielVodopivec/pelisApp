@@ -5,7 +5,7 @@ export default function CarouselItem({ img, title, movieClass, released }) {
 
             <div className="card bg-dark text-white">
 
-                <img src={img} className="card-img" alt="movie" />
+                <img src={img} className="card-img"  alt="movie" />
                 <div className="card-img-overlay">
                     <div className="overlayText">
                         <h1>Peliss App</h1>

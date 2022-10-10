@@ -4,8 +4,6 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* background-color: #0b0c0d; */
-   
-
 }
 
 #root {
@@ -18,7 +16,6 @@ body{
 }
 
 body::-webkit-scrollbar {
-    
     width: .3em;
 }
 
@@ -27,7 +24,6 @@ body::-webkit-scrollbar-thumb  {
     background-color: gray;
     border: transparent;
     border-radius: 5px;
-    
 }
 
 header {
@@ -36,12 +32,13 @@ header {
 
 .outlet {
     width: 100%;
+    
     flex-grow: 1;
 }
 .previewContainer {
     color:antiquewhite;
     margin: 0 auto;
-    width: 1150px;
+    height: 100%;
 }
 
 .overlayText {
@@ -56,7 +53,8 @@ header {
 
     .previewContainer {
         
-        width: 100vw;
+        width: 100%;
+        padding-bottom: 10px;
     }
 }
 
@@ -86,6 +84,7 @@ header {
 
     font-size: x-large;
     padding-left: 5vw;
+    padding-bottom: 20px;
     width: 100%;
     height: inherit;
     
@@ -100,8 +99,9 @@ header {
 
 .overviewMainContent {
     margin: 0;
+    
     width: 40vw;
-    height: 500px;
+    height: 450px;
     min-width: 350px;
     overflow-y: auto;
     text-align: left;
@@ -146,12 +146,10 @@ header {
 
 .footer {
     box-sizing: border-box;
-    height: 50px;
+    height: 40px;
     width: 100%;
     padding-top: 5px;
     padding-left: 2em;
-    
-    
     background-color: #212529;
     color: antiquewhite;
     font-size: 16px;

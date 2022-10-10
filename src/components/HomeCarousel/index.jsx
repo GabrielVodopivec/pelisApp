@@ -14,7 +14,7 @@ export default function HomeCarousel() {
                     const { results } = data;
                     setPopularMovies(results)
                 })
-                .catch(({response}) => {
+                .catch(({ response }) => {
                     console.log(response.data)
                 })
         }
@@ -24,42 +24,47 @@ export default function HomeCarousel() {
 
     return (
         <div className="previewContainer" >
-            <div className="container-fluid  pt-4">
-                
-                {
-                    popularMovies.length ?
-                        <div id="carouselExampleInterval" className="carousel slide " data-bs-ride="carousel">
-                            <div className="carousel-inner ">
-                                {
-                                    popularMovies.map((movie, index) => {
-                                        let movieClass;
-                                        if (index === 0) {
-                                            movieClass = "carousel-item active "
-                                        } else {
-                                            movieClass = "carousel-item"
+            <div className="container-fluid py-2">
+                <div className="row justify-content-center">
+                    <div className="col-lg-4 text-center">Proxiammente Series</div>
+                    <div className="col-lg-4">
+                        {
+                            popularMovies.length ?
+                                <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel">
+                                    <div className="carousel-inner ">
+                                        {
+                                            popularMovies.map((movie, index) => {
+                                                let movieClass;
+                                                if (index === 0) {
+                                                    movieClass = "carousel-item active "
+                                                } else {
+                                                    movieClass = "carousel-item"
+                                                }
+                                                return (
+                                                    <CarouselItem
+                                                        key={movie.id}
+                                                        movieClass={movieClass}
+                                                        img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                                        title={movie.original_title}
+                                                        released={movie.release_date}
+                                                    />
+                                                )
+                                            })
                                         }
-                                        return (
-                                            <CarouselItem
-                                                key={movie.id}
-                                                movieClass={movieClass}
-                                                img={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                                                title={movie.original_title}
-                                                released={movie.release_date}
-                                            />
-                                        )
-                                    })
-                                }
-                            </div>
-                            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Previous</span>
-                            </button>
-                            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Next</span>
-                            </button>
-                        </div> : null
-                }
+                                    </div>
+                                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span className="visually-hidden">Previous</span>
+                                    </button>
+                                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span className="visually-hidden">Next</span>
+                                    </button>
+                                </div> : null
+                        }
+                    </div>
+                    <div className="col-lg-4 text-center">Proximamente Novelas</div>
+                </div>
             </div>
         </div>
     )

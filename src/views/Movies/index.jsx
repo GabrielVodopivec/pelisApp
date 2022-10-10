@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from 'axios';
 
@@ -11,6 +11,13 @@ const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
 function Movies() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    // Test hook useLocation
+    // http://localhost:3000/movies?a=hola&b=como%20estas
+    const { search } = useLocation();
+    const query = new URLSearchParams(search)
+    console.log(query.get('a')) // hola
+    console.log(query.get('b')) // como estas
 
     const token = useSelector(tokenSelector);
 
@@ -32,7 +39,7 @@ function Movies() {
                 })
                 .catch(error => {
                     console.log(error)
-                    
+
                 })
         }
 
@@ -44,7 +51,7 @@ function Movies() {
         <div className="movieContainer">
             {
                 token ? (
-                    
+
                     movies?.map(movie => {
                         return (
                             <div key={movie.id} className="movieCard">
