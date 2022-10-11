@@ -9,6 +9,9 @@ import Card from "../../components/Card";
 import { useSelector } from "react-redux";
 import { tokenSelector } from "../../app/selectors";
 
+// Assets
+import alt_img from '../../assets/images/alt-img-webp.webp'
+
 export default function SearchResults() {
 
     const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
@@ -67,7 +70,7 @@ export default function SearchResults() {
                                 img={
                                     movie.backdrop_path ? 
                                     `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` :
-                                    "https://www.ventanasur.com.ar/wp-content/uploads/2021/04/cine-argentino-2.jpg"
+                                    alt_img
                                 }
                             />
                         )

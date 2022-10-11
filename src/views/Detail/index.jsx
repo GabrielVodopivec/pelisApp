@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import { tokenSelector } from "../../app/selectors";
 import Notfound from "../NotFound";
 
-
-import altImg from '../../assets/images/altImg.jpg'
+// Assets;
+import altImg from '../../assets/images/alt-img-webp.webp';
 
 function Detail() {
     const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
@@ -15,7 +15,7 @@ function Detail() {
 
     let { movie_id } = useParams();
 
-    let [movieDetail, setMovieDetail] = useState(null)
+    let [movieDetail, setMovieDetail] = useState(null);
     let [error, setError] = useState(false);
 
     useEffect(() => {
@@ -47,11 +47,13 @@ function Detail() {
             {
                 movieDetail ?
                     <div className="movieDetail">
-                        <img className="imgDetail" src={
-                            movieDetail.backdrop_path ? 
-                            `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}` :
-                            altImg
-                        } alt="movie" />
+                        <img
+                            className="imgDetail"
+                            src={
+                                movieDetail.backdrop_path ?
+                                    `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}` :
+                                    altImg
+                            } alt="movie" />
                         <div className="mainContent">
                             <h1> {movieDetail.original_title} </h1>
                             <span> Released Date: {movieDetail.release_date}</span>

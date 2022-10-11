@@ -1,18 +1,4 @@
 
-#root {
-    background-image: url('../assets/images/tickets.jpg');
-    /* background-image: url('https://images.unsplash.com/photo-1593940256067-fb4acd831804?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8c2hvd3xlbnwwfDF8MHx8&w=1000&q=80'); */
-    background-position:center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    min-height: 100vh;
-}
-
 body::-webkit-scrollbar {
     width: .3em;
 }
@@ -24,74 +10,90 @@ body::-webkit-scrollbar-thumb  {
     border-radius: 5px;
 }
 
+#root {
+    background-image: url('../assets/images/tickets-webp.webp');
+    background-position:center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    height: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
 header {
     width: 100%;
 }
 
 .outlet {
     width: 100%;
-    
     flex-grow: 1;
 }
+
+/* Home Carousel Styles --------------------------------------------*/
+
 .previewContainer {
-    color:antiquewhite;
     margin: 0 auto;
     height: 100%;
+    color:antiquewhite;
 }
 
 .overlayText {
     box-sizing: border-box;
-    padding: 10px;
     width: 100%;
+    padding: 10px;
     border-radius: 10px;
     background-color: #21252997;
 }
 
 @media screen and (max-width: 1200px) {
-
     .previewContainer {
-        
         width: 100%;
         padding-bottom: 10px;
     }
 }
 
+/* Detail View Styles --------------------------------------------*/
+
 .movieDetail {
-    position: absolute;
     box-sizing: border-box;
-    padding-bottom: 5px;
     position: relative;
-    background: linear-gradient(to top, rgb(0, 0, 0) 25%, transparent);
+    flex-grow: 1;
+    z-index: 10;
     width: 100%;
     height: 100vh;  
-    z-index: 10;
+    padding-bottom: 5px;
+    background: linear-gradient(to top, rgb(0, 0, 0) 25%, transparent);
 }
 
 .imgDetail {
-
     position: absolute;
+    z-index: 1;
     right: 0;
     top: 0;
-    z-index: 9;
     height: 45vw;
     max-height: 590px;
 }
 
 .mainContent {
     position: absolute;
+    z-index: 20;
+    width: 100%;
+    height: inherit;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 25px;
-    z-index: 20;
+
     font-size: x-large;
     padding-left: 5vw;
     padding-bottom: 20px;
-    width: 100%;
-    height: inherit;
-    
     background: linear-gradient(90deg, rgb(0, 0, 0) 35%, transparent);
-    
     color: antiquewhite;
 }
 
@@ -102,18 +104,10 @@ header {
 
 .overviewMainContent {
     margin: 0;
-    
-    width: 40vw;
     height: 450px;
     width: 500px;
     overflow-y: auto;
     text-align: left;
-}
-
-@media screen and (max-width: 600px) {
-    .overviewMainContent {
-        width: 90%;
-    }
 }
 
 .overviewMainContent::-webkit-scrollbar {
@@ -126,6 +120,36 @@ header {
     border: transparent;
     border-radius: 5px;
     
+}
+
+@media screen and (max-width: 700px) {
+    .movieDetail {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: flex-start;
+        height: 100vh
+    }
+
+    .imgDetail {
+        position: static;
+        height: auto;
+        width: 100%;
+        z-index: 0;
+    }
+
+    .overviewMainContent {   
+        font-size: .7em;
+        height: 250px;
+        width: 90%;
+    }
+
+    .mainContent {
+        position: static;
+        flex-grow: 1;
+        z-index: 0;
+    }
+
 }
 
 .genresMainContent {
@@ -141,15 +165,19 @@ header {
     padding: 0 10px;
 }
 
+/* Error Page Styles --------------------------------------------*/
+
 .notFound {
     text-align: center;
     color: white;
     margin-top: 50vh;
 }
 
+/* Form Styles --------------------------------------------*/
+
 .customForm {
-    margin: 0 auto;
     width: 500px;
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 800px) {
@@ -158,8 +186,9 @@ header {
         padding: 0 10px;
         width: 100vw;
     }
-    
 }
+
+/* Footer Styles --------------------------------------------*/
 
 .footer {
     box-sizing: border-box;
@@ -171,15 +200,15 @@ header {
     color: antiquewhite;
     font-size: 16px;
     text-align: left;
-    
 }
 
 .footer :nth-child(1) {
     height: 100%;
     padding: 0;
     margin: 0;
-
 }
+
+/* Movies View Styles --------------------------------------------*/
 
 .movieContainer {
     padding: 2em;
@@ -190,10 +219,11 @@ header {
     justify-content: center;
 }
 
+/* Card Component Styles --------------------------------------------*/
+
 .cardContainer {
     width: 28rem;
 }
-
 
 @media screen and (max-width: 500px) {
     .cardContainer {
@@ -209,7 +239,6 @@ header {
 }
 
 .cardOverview::-webkit-scrollbar {
-    
     width: .3em;
 }
 
@@ -218,38 +247,8 @@ header {
     background-color: gray;
     border: transparent;
     border-radius: 5px;
-    
 }
 
-@media screen and (max-width: 600px) {
-    .movieDetail {
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: flex-start;
-    }
-
-    .imgDetail {
-        position: static;
-        height: auto;
-        width: 100%;
-        z-index: 0;
-    }
-
-    .overviewMainContent {   
-        font-size: .7em;
-        height: 250px;
-
-    }
-    .mainContent {
-        position: static;
-        z-index: 0;
-    }
-
-}
-
-/* Card Styles */
 .imgOverflow {
     height: 230px;
     overflow-y: hidden;
