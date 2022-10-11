@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import { tokenSelector } from "../../app/selectors";
 import Notfound from "../NotFound";
 
+
+import altImg from '../../assets/images/altImg.jpg'
+
 function Detail() {
     const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
     const token = useSelector(tokenSelector);
@@ -45,9 +48,9 @@ function Detail() {
                 movieDetail ?
                     <div className="movieDetail">
                         <img className="imgDetail" src={
-                            movieDetail.backdrop_path !== null ? 
+                            movieDetail.backdrop_path ? 
                             `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}` :
-                            "https://www.ventanasur.com.ar/wp-content/uploads/2021/04/cine-argentino-2.jpg"
+                            altImg
                         } alt="movie" />
                         <div className="mainContent">
                             <h1> {movieDetail.original_title} </h1>
