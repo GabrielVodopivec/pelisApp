@@ -102,9 +102,15 @@ header {
     
     width: 40vw;
     height: 450px;
-    min-width: 350px;
+    width: 500px;
     overflow-y: auto;
     text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+    .overviewMainContent {
+        width: 90%;
+    }
 }
 
 .overviewMainContent::-webkit-scrollbar {
@@ -121,6 +127,8 @@ header {
 
 .genresMainContent {
     display: flex;
+    flex-wrap: wrap;
+    width: 100%;
     gap: 25px;
 }
 
