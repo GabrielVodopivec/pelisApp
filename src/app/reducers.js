@@ -5,7 +5,8 @@ const token = localStorage.getItem('token');
 export const initialState = {
     token: token ? token : null,
     movies: [],
-    genres: []
+    genres: [],
+    favs: []
 }
 
 export const rootReducer = (state, action) => {

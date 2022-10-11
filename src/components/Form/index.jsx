@@ -5,10 +5,10 @@ function CustomForm(props) {
 
             <form
                 onSubmit={props.handleSubmit}
-                className="container-fluid rounded-3 bg-dark mt-2 pt-2"
-                
-            >
+                className="container-fluid rounded-3 bg-dark mt-2 pt-2" >
+
                 <h1 className="card-header text-center text-light pt-2">Login</h1>
+
                 <div className="row justify-content-center">
                     <div className="col-md-10">
 
@@ -20,12 +20,11 @@ function CustomForm(props) {
                             </label>
                             {
                                 props.errors.email ?
-                                    <span
-                                        style={{ color: "red" }}
-                                    >
+                                    <span style={{ color: "red" }}>
                                         {props.errors.email}
                                     </span> :
-                                    null}
+                                    null
+                            }
                         </div>
 
                         <div className="mb-2">
@@ -41,6 +40,7 @@ function CustomForm(props) {
                         </div>
                     </div>
                 </div>
+
                 <div className="row justify-content-center py-4">
                     <div className="col-md-10">
                         <div className="form-label">
@@ -51,9 +51,9 @@ function CustomForm(props) {
                             </label>
                             {
                                 props.errors.password ?
-                                    <span
-                                        style={{ color: "red" }}
-                                    >{props.errors.password}</span> :
+                                    <span style={{ color: "red" }}>
+                                        {props.errors.password}
+                                    </span> :
                                     null}
                         </div>
                         <div className="mb-2">
@@ -69,6 +69,7 @@ function CustomForm(props) {
                         </div>
                     </div>
                 </div>
+
                 <div className="row justify-content-center pb-4">
                     <div className="col-6">
                         <button
@@ -83,6 +84,7 @@ function CustomForm(props) {
                         </button>
                     </div>
                 </div>
+
             </form>
 
         </div>

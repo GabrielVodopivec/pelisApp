@@ -233,3 +233,24 @@ header {
     }
 
 }
+
+/* Card Styles */
+.imgOverflow {
+    height: 230px;
+    overflow-y: hidden;
+}
+
+.movieFav {
+    position: absolute;
+    padding: 0.5em;
+    font-size: 1.5em;
+    background-color: rgba(0, 0, 0, 0.235);
+    border-radius: 10px;
+    border: none;
+}
+
+.movieFav:hover::after {
+    font-size: .75em;
+    content: "  Add to favs";
+    color: blanchedalmond;
+}

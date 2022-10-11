@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 
+function Title(props) {
+    return <h1>{props.title}</h1>;
+}
+
 function About() {
+    const info = {title:'About'}
     return (
         <div className="notFound">
-            <h1>About</h1>
+            <Title {...info} />
             <Link className="btn btn-secondary" to={'/'}>Go Home!</Link>
         </div>
     )

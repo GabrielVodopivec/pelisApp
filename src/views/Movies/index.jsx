@@ -1,23 +1,19 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+// Libraries
 import axios from 'axios';
+// import Swal from "sweetalert2";
 
 import { tokenSelector } from "../../app/selectors";
 import Card from "../../components/Card";
 
-const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
-
 function Movies() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
-    // Test hook useLocation
-    // http://localhost:3000/movies?a=hola&b=como%20estas
-    const { search } = useLocation();
-    const query = new URLSearchParams(search)
-    console.log(query.get('a')) // hola
-    console.log(query.get('b')) // como estas
+    const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
+
+    const navigate = useNavigate();
 
     const token = useSelector(tokenSelector);
 
@@ -26,24 +22,21 @@ function Movies() {
     useEffect(() => {
 
         if (!token) {
-            return navigate('/');
+            return navigate('/login');
         }
 
         const endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
 
-        if (!movies.length) {
-            axios.get(endpoint)
-                .then(({ data }) => {
-                    const { results } = data;
-                    setMovies(results)
-                })
-                .catch(error => {
-                    console.log(error)
+        axios.get(endpoint)
+            .then(({ data }) => {
+                const { results } = data;
+                setMovies(results)
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
-                })
-        }
-
-    }, [dispatch, navigate, token, movies.length])
+    }, [navigate, token])
 
     console.log('re-render');
 
@@ -51,27 +44,21 @@ function Movies() {
         <div className="movieContainer">
             {
                 token ? (
-
                     movies?.map(movie => {
                         return (
-                            <div key={movie.id} className="movieCard">
-                                <div className="row">
-                                    <div className="col-4">
-                                        <Card
-                                            id={movie.id}
-                                            title={movie.original_title}
-                                            votes={movie.vote_average}
-                                            votesQuantity={movie.vote_count}
-                                            released={movie.release_date}
-                                            overview={movie.overview}
-                                            img={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <Card
+                                key={movie.id}
+                                id={movie.id}
+                                title={movie.original_title}
+                                votes={movie.vote_average}
+                                votesQuantity={movie.vote_count}
+                                released={movie.release_date}
+                                overview={movie.overview}
+                                img={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
+                            />
                         )
                     })
-                ) : <h1>Loding ...</h1>
+                ) : <h1>Loading ...</h1>
             }
         </div>
     )

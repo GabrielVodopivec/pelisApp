@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar"
 export default function Header(props) {
     return (
         <header>
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark bd-navbar">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark bd-navbar">
                 <div className="container-fluid">
                     <Link className="navbar-brand px-2 my-2" to={'/'}>Peliss App</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,13 @@ export default function Header(props) {
                                             <button className="btn btn-outline-light" onClick={props.handleClick}>Logout</button>
                                         </li>
                                         <li className="nav-item px-2 mt-2">
-                                            <Link className="nav-link active" to={'movies'} >Movies</Link>
+                                            <Link className="nav-link active" to={'movies'}>Movies</Link>
+                                        </li>
+                                        <li className="nav-item px-2 mt-2">
+                                            <Link className="nav-link active" to={'series'}>Series</Link>
+                                        </li>
+                                        <li className="nav-item px-2 mt-2">
+                                            <Link className="nav-link active" to={'documentals'}>Documentals</Link>
                                         </li>
                                     </>
                             }

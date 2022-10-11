@@ -6,6 +6,7 @@ import { tokenSelector } from "../../app/selectors";
 import Header from "../../components/Header";
 import Footer from '../../components/Footer'
 const Home = () => {
+
     const token = useSelector(tokenSelector)
     const dispatch = useDispatch();
 
@@ -20,7 +21,6 @@ const Home = () => {
                 <Outlet />
             </div>
             <Footer />
-
         </>
     )
 }

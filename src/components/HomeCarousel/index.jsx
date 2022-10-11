@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+// Libraries
 import axios from "axios";
-import CarouselItem from "./CarouselItem"
+
+// Services
+import { caruselItemMaper } from "../../services/carouselServices";
 
 export default function HomeCarousel() {
 
@@ -22,125 +26,75 @@ export default function HomeCarousel() {
 
     console.log('re-render')
 
-    return (
+    const carousels = (
         <div className="previewContainer" >
             <div className="container py-2">
                 <div className="row justify-content-center">
-                    
                     <div className="col-lg-4 py-2 align-content-end">
-                        {
-                            popularMovies.length ?
-                                <div id="carouselExampleInterval1" className="carousel slide" data-bs-ride="carousel">
-                                    <div className="carousel-inner ">
-                                        {
-                                            popularMovies.map((movie, index) => {
-                                                let movieClass;
-                                                if (index === 5) {
-                                                    movieClass = "carousel-item active "
-                                                } else {
-                                                    movieClass = "carousel-item"
-                                                }
-                                                return (
-                                                    <CarouselItem
-                                                        key={movie.id}
-                                                        movieClass={movieClass}
-                                                        banner={"Documentals"}
-                                                        img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                                        title={movie.original_title}
-                                                        released={movie.release_date}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval1" data-bs-slide="prev">
-                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Previous</span>
-                                    </button>
-                                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval1" data-bs-slide="next">
-                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Next</span>
-                                    </button>
-                                </div> : null
-                        }
+                        <Link to='series'>
+                            {
+                                popularMovies.length ?
+                                    <div id="carouselExampleInterval1" className="carousel slide" data-bs-ride="carousel">
+                                        <div className="carousel-inner ">
+                                            {caruselItemMaper(popularMovies, "Series")}
+                                        </div>
+                                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval1" data-bs-slide="prev">
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="visually-hidden">Previous</span>
+                                        </button>
+                                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval1" data-bs-slide="next">
+                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="visually-hidden">Next</span>
+                                        </button>
+                                    </div> : null
+                            }
+                        </Link>
                     </div>
                     <div className="col-lg-4 py-2 align-content-end">
-                        {
-                            popularMovies.length ?
-                                <div id="carouselExampleInterval2" className="carousel slide" data-bs-ride="carousel">
-                                    <div className="carousel-inner ">
-                                        {
-                                            popularMovies.map((movie, index) => {
-                                                let movieClass;
-                                                if (index === 0) {
-                                                    movieClass = "carousel-item active "
-                                                } else {
-                                                    movieClass = "carousel-item"
-                                                }
-                                                return (
-                                                    <CarouselItem
-                                                        key={movie.id}
-                                                        movieClass={movieClass}
-                                                        banner={"Series"}
-                                                        img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                                        title={movie.original_title}
-                                                        released={movie.release_date}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="prev">
-                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Previous</span>
-                                    </button>
-                                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="next">
-                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Next</span>
-                                    </button>
-                                </div> : null
-                        }
+                        <Link to={'movies'}>
+                            {
+                                popularMovies.length ?
+                                    <div id="carouselExampleInterval2" className="carousel slide" data-bs-ride="carousel">
+                                        <div className="carousel-inner ">
+                                            {caruselItemMaper(popularMovies, "Movies")}
+                                        </div>
+                                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="prev">
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="visually-hidden">Previous</span>
+                                        </button>
+                                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval2" data-bs-slide="next">
+                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="visually-hidden">Next</span>
+                                        </button>
+                                    </div> : null
+                            }
+                        </Link>
                     </div>
                     <div className="col-lg-4 py-2 align-content-end">
-                        {
-                            popularMovies.length ?
-                                <div id="carouselExampleInterval3" className="carousel slide" data-bs-ride="carousel">
-                                    <div className="carousel-inner ">
-                                        {
-                                            popularMovies.map((movie, index) => {
-                                                let movieClass;
-                                                if (index === 12) {
-                                                    movieClass = "carousel-item active "
-                                                } else {
-                                                    movieClass = "carousel-item"
-                                                }
-                                                return (
-                                                    <CarouselItem
-                                                        key={movie.id}
-                                                        movieClass={movieClass}
-                                                        banner={"Movies"}
-                                                        img={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                                        title={movie.original_title}
-                                                        released={movie.release_date}
-                                                    />
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="prev">
-                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Previous</span>
-                                    </button>
-                                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="next">
-                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span className="visually-hidden">Next</span>
-                                    </button>
-                                </div> : null
-                        }
+                        <Link to='documentals'>
+                            {
+                                popularMovies.length ?
+                                    <div id="carouselExampleInterval3" className="carousel slide" data-bs-ride="carousel">
+                                        <div className="carousel-inner ">
+                                            {caruselItemMaper(popularMovies, "Documentals")}
+                                        </div>
+                                        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="prev">
+                                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span className="visually-hidden">Previous</span>
+                                        </button>
+                                        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval3" data-bs-slide="next">
+                                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span className="visually-hidden">Next</span>
+                                        </button>
+                                    </div> : null
+                            }
+                        </Link>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     )
+
+    return carousels;
 }

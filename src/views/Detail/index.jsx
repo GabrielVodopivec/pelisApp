@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 import { tokenSelector } from "../../app/selectors";
 import Notfound from "../NotFound";
 
-
 function Detail() {
-    
     const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
     const token = useSelector(tokenSelector);
     const navigate = useNavigate();
@@ -17,11 +15,10 @@ function Detail() {
     let [movieDetail, setMovieDetail] = useState(null)
     let [error, setError] = useState(false);
 
-
     useEffect(() => {
 
         if (!token) {
-            return navigate('/');
+            return navigate('/login');
         }
 
         const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
@@ -47,8 +44,11 @@ function Detail() {
             {
                 movieDetail ?
                     <div className="movieDetail">
-                        <img className="imgDetail" src={`https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path
-                            }`} alt="movie" />
+                        <img className="imgDetail" src={
+                            movieDetail.backdrop_path !== null ? 
+                            `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}` :
+                            "https://www.ventanasur.com.ar/wp-content/uploads/2021/04/cine-argentino-2.jpg"
+                        } alt="movie" />
                         <div className="mainContent">
                             <h1> {movieDetail.original_title} </h1>
                             <span> Released Date: {movieDetail.release_date}</span>

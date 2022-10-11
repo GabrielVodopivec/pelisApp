@@ -10,13 +10,16 @@ import './styles/styles.css'
 
 // Views
 import Home from './views/Home';
+import HomeCarousel from './components/HomeCarousel';
 import Login from './views/Login';
 import Detail from './views/Detail';
-import About from './views/About';
 import Movies from './views/Movies';
+import Series from './views/Series';
+import Documentals from './views/Documentals';
+import SearchResults from './views/SearchResults';
+import About from './views/About';
 
 import ErrorBoundary from './components/ErrorBoundary';
-import HomeCarousel from './components/HomeCarousel';
 
 // Testing React.lazy load and Suspense Component;
 const Notfound = React.lazy(() => {
@@ -53,6 +56,12 @@ const router = createBrowserRouter([{
       </Suspense>
     </ErrorBoundary>,
   }, {
+    path: 'series',
+    element: <Series />
+  },  {
+    path: 'documentals',
+    element: <Documentals />
+  }, {
     path: 'about',
     element: <About />
   }, {
@@ -60,6 +69,9 @@ const router = createBrowserRouter([{
     element: <Detail />,
     errorElement: <Notfound />,
   
+  }, {
+    path: 'results',
+    element: <SearchResults />
   }]
 }])
 

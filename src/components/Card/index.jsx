@@ -2,12 +2,19 @@ import { Link } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
 
 function Card(props) {
-    let stars = Array(Math.floor(props.votes)).fill(' ★ ')
+
+    let stars = Array(Math.floor(props.votes)).fill(' ⭐ ');
+
     return (
         <div className="card cardContainer bg-dark" >
-            <img src={props.img} className="card-img-top" alt="movie" />
+            <div className="imgOverflow">
+                <img src={props.img} className="card-img-top" alt="movie" />
+            </div>
+            <button  className="movieFav">
+            ❤️🖤
+            </button>
             <div className="card-body">
-                <h2 className="card-title text-light text-center" style={{height: "2em"}}>{props.title}</h2>
+                <h2 className="card-title text-light text-center" style={{ height: "2em" }}>{props.title}</h2>
                 {/* <p className="card-text text-dark cardOverview">{props.overview}</p> */}
             </div>
             <ul className="list-group list-group-flush">

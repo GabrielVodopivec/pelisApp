@@ -104,15 +104,16 @@ function Login() {
             })
     }
 
-    return (
-        <CustomForm
-            email={userInfo.email}
-            password={userInfo.password}
-            errors={userInfo.error}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            handleBlur={handleBlur} />
-    )
+    const customFormProps = {
+        email: userInfo.email,
+        password: userInfo.password,
+        errors: userInfo.error,
+        handleChange,
+        handleSubmit,
+        handleBlur
+    }
+
+    return <CustomForm {...customFormProps} />;
 }
 
 export default Login;
