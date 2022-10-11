@@ -20,9 +20,9 @@ function Detail() {
 
     useEffect(() => {
 
-        if (!token) {
+        /* if (!token) {
             return navigate('/login');
-        }
+        } */
 
         const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
         axios(url)

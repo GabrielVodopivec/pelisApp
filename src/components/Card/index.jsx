@@ -19,6 +19,7 @@ function Card(props) {
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item bg-dark text-center" >
+                    .
                     {
                         stars.map(star => {
                             return <span key={uuidv4()} style={{ color: 'gold' }}>{star}</span>;
