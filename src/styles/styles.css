@@ -1,9 +1,8 @@
-
 body::-webkit-scrollbar {
     width: .3em;
 }
 
-body::-webkit-scrollbar-thumb  {
+body::-webkit-scrollbar-thumb {
     color: rgb(90, 67, 67);
     background-color: gray;
     border: transparent;
@@ -12,7 +11,7 @@ body::-webkit-scrollbar-thumb  {
 
 #root {
     background-image: url('../assets/images/tickets-webp.webp');
-    background-position:center;
+    background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
@@ -39,7 +38,7 @@ header {
 .previewContainer {
     margin: 0 auto;
     height: 100%;
-    color:antiquewhite;
+    color: antiquewhite;
 }
 
 .overlayText {
@@ -65,8 +64,8 @@ header {
     flex-grow: 1;
     z-index: 10;
     width: 100%;
-    height: 100vh;  
-    padding-bottom: 5px;
+    height: 100vh;
+    padding-bottom: 20px;
     background: linear-gradient(to top, rgb(0, 0, 0) 25%, transparent);
 }
 
@@ -80,6 +79,7 @@ header {
 }
 
 .mainContent {
+    box-sizing: border-box;
     position: absolute;
     z-index: 20;
     width: 100%;
@@ -91,8 +91,8 @@ header {
     gap: 25px;
 
     font-size: x-large;
-    padding-left: 5vw;
-    padding-bottom: 20px;
+    padding-left: 3vw;
+
     background: linear-gradient(90deg, rgb(0, 0, 0) 35%, transparent);
     color: antiquewhite;
 }
@@ -105,7 +105,8 @@ header {
 .overviewMainContent {
     margin: 0;
     height: 450px;
-    width: 500px;
+    width: 490px;
+    padding-right: 15px;
     overflow-y: auto;
     text-align: left;
 }
@@ -114,31 +115,32 @@ header {
     width: .3em;
 }
 
-.overviewMainContent::-webkit-scrollbar-thumb  {
+.overviewMainContent::-webkit-scrollbar-thumb {
     color: rgb(90, 67, 67);
     background-color: gray;
     border: transparent;
     border-radius: 5px;
-    
+
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .movieDetail {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-content: flex-start;
-        height: 100vh
+        height: 100vh;
+
     }
 
     .imgDetail {
         position: static;
         height: auto;
         width: 100%;
-        
+
     }
 
-    .overviewMainContent {   
+    .overviewMainContent {
         font-size: .7em;
         height: 250px;
         width: 90%;
@@ -146,9 +148,9 @@ header {
 
     .mainContent {
         position: static;
-        
+
         flex-grow: 1;
-        
+
     }
 
 }
@@ -243,7 +245,7 @@ header {
     width: .3em;
 }
 
-.cardOverview::-webkit-scrollbar-thumb  {
+.cardOverview::-webkit-scrollbar-thumb {
     color: rgb(90, 67, 67);
     background-color: gray;
     border: transparent;
