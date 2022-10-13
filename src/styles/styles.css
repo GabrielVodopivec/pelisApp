@@ -257,7 +257,7 @@ header {
     overflow-y: hidden;
 }
 
-.movieFav {
+.addMovieFav {
     position: absolute;
     padding: 0.5em;
     font-size: 1.5em;
@@ -266,8 +266,23 @@ header {
     border: none;
 }
 
-.movieFav:hover::after {
+.addMovieFav:hover::after {
     font-size: .75em;
     content: "  Add to favs";
+    color: blanchedalmond;
+}
+
+.removeMovieFav {
+    position: absolute;
+    padding: 0.5em;
+    font-size: 1.5em;
+    background-color: rgba(0, 0, 0, 0.235);
+    border-radius: 10px;
+    border: none;
+}
+
+.removeMovieFav:hover::after {
+    font-size: .75em;
+    content: "  Remove from favs";
     color: blanchedalmond;
 }

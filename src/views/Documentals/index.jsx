@@ -15,7 +15,7 @@ export default function Documentals() {
         }
     }, [token, navigate]);
 
-    const documentals = <h1>Documentals</h1>;
+    const documentals = <h1 style={{textAlign: "center", color: "wheat"}}>Documentals coming soon...</h1>;
 
     return documentals;
 }

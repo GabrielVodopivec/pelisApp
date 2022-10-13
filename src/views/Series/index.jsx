@@ -8,14 +8,14 @@ import { tokenSelector } from "../../app/selectors"
 export default function Series() {
     const token = useSelector(tokenSelector);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         if (!token) {
             return navigate('/login');
         }
     }, [token, navigate]);
 
-    const series = <h1>Series</h1>;
+    const series = <h1 style={{textAlign: "center", color: "wheat"}}>Series coming soon...</h1>;
 
     return series;
 }

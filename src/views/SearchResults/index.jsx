@@ -56,7 +56,7 @@ export default function SearchResults() {
             {
                 token ? 
                 searchResults[0] === 'Not found' ?
-                (<h1>Not Found</h1>) : (
+                (<h1 style={{color: "wheat"}} >Not Found</h1>) : (
                     searchResults?.map(movie => {
                         return (
                             <Card

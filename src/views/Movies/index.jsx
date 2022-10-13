@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate/* , useRouteLoaderData */ } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // Libraries
@@ -10,6 +10,9 @@ import { tokenSelector } from "../../app/selectors";
 import Card from "../../components/Card";
 
 function Movies() {
+
+    // const hola = useRouteLoaderData('home');
+    // console.log(hola)
 
     const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
 

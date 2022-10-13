@@ -17,6 +17,7 @@ import Movies from './views/Movies';
 import Series from './views/Series';
 import Documentals from './views/Documentals';
 import SearchResults from './views/SearchResults';
+import Favorites from './views/Favorites';
 import About from './views/About';
 
 import ErrorBoundary from './components/ErrorBoundary';
@@ -33,6 +34,8 @@ const Notfound = React.lazy(() => {
 
 const router = createBrowserRouter([{
   path: '/',
+  loader: () => 'useRouteLoaderData',
+  id: 'home',
   element: <Home />,
   errorElement:
     <ErrorBoundary>
@@ -72,6 +75,9 @@ const router = createBrowserRouter([{
   }, {
     path: 'results',
     element: <SearchResults />
+  }, {
+    path: 'favorites',
+    element: <Favorites />
   }]
 }])
 
