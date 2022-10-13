@@ -21,32 +21,28 @@ function Card(props) {
             }
         };
 
-        let checkStore = localStorage.getItem('favs');
+        !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify({}));
 
-        const elementToStoreToJSON = JSON.stringify(elemenToStore);
+        let checkStore = JSON.parse(localStorage.getItem('favs'));
 
-        if (!checkStore) {
-            localStorage.setItem('favs', elementToStoreToJSON);
-            setFav(() => elemenToStore[props.id].isFav);
-
-        } else {
-            let storeToObj = JSON.parse(checkStore);
-            if (storeToObj[props.id]) {
-                if (storeToObj[props.id].isFav) {
-                    storeToObj[props.id].isFav = false;
-                } else {storeToObj[props.id].isFav = true;}
-            } else {
-                storeToObj = {
-                    ...storeToObj,
-                    [props.id]: {
-                        ...elemenToStore[props.id]
-                    }
+        if (!checkStore[props.id]) {
+            checkStore = {
+                ...checkStore,
+                [props.id]: {
+                    ...elemenToStore[props.id]
                 }
             }
-            setFav(storeToObj[props.id].isFav);
-            const infoToStoreToJSON = JSON.stringify(storeToObj);
-            localStorage.setItem('favs', infoToStoreToJSON);
+            setFav(() => true);
+
+        } else {
+            delete checkStore[props.id]
+            setFav(() => false);
         }
+
+        const infoToStoreToJSON = JSON.stringify(checkStore);
+        localStorage.setItem('favs', infoToStoreToJSON);
+
+        console.log(JSON.parse(localStorage.getItem('favs')))
 
     }
 

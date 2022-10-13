@@ -20,13 +20,12 @@ export default function Favorites() {
             return navigate('/login');
         }
         if (movieFavs) {
-            
             setFavs(Object.entries(movieFavs));
         }
 
     }, [token, navigate])
 
-    console.log(favs)
+    // console.log(favs)
 
     return (
         <div className="movieContainer">
