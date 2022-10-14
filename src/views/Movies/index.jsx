@@ -9,6 +9,8 @@ import axios from 'axios';
 import { tokenSelector } from "../../app/selectors";
 import Card from "../../components/Card";
 
+import alt_img from '../../assets/images/alt-img-webp.webp'
+
 function Movies() {
 
     // const hola = useRouteLoaderData('home');
@@ -46,22 +48,23 @@ function Movies() {
     return (
         <div className="movieContainer">
             {
-                token ? (
-                    movies?.map(movie => {
-                        return (
-                            <Card
-                                key={movie.id}
-                                id={movie.id}
-                                title={movie.original_title}
-                                votes={movie.vote_average}
-                                votesQuantity={movie.vote_count}
-                                released={movie.release_date}
-                                overview={movie.overview}
-                                img={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                            />
-                        )
-                    })
-                ) : <h1>Loading ...</h1>
+                token ?
+                    (movies?.map(movie => (
+                        <Card
+                            key={movie.id}
+                            id={movie.id}
+                            title={movie.original_title}
+                            votes={movie.vote_average}
+                            votesQuantity={movie.vote_count}
+                            released={movie.release_date}
+                            overview={movie.overview}
+                            img={
+                                movie.backdrop_path ?
+                                    `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` :
+                                    alt_img
+                            }
+                        />
+                    ))) : <h1>Loading ...</h1>
             }
         </div>
     )

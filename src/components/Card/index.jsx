@@ -75,9 +75,12 @@ function Card(props) {
                 <li className="list-group-item bg-dark text-center" >
                     .
                     {
-                        stars.map(star => {
-                            return <span key={uuidv4()} style={{ color: 'gold' }}>{star}</span>;
-                        })
+                        stars.map((star) => (
+                            <span key={uuidv4()} style={{ color: 'gold' }}>
+                                {star}
+                            </span>
+                        ))
+
                     }
                 </li>
                 <li className="list-group-item bg-dark text-light text-center">Votes quantity: {props.votesQuantity}</li>

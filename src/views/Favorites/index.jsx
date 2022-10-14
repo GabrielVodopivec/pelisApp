@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { tokenSelector } from "../../app/selectors"
 import Card from "../../components/Card"
 
+import alt_img from '../../assets/images/alt-img-webp.webp'
+
 export default function Favorites() {
 
     const token = useSelector(tokenSelector);
@@ -33,8 +35,6 @@ export default function Favorites() {
                 token ? 
                 favs.length ? (
                     favs.map(([movieId, movieInfo]) => {
-                        if (movieInfo.isFav) {
-
                             return (
                                 <Card
                                     key={movieId}
@@ -43,10 +43,13 @@ export default function Favorites() {
                                     votes={movieInfo.vote_average}
                                     votesQuantity={movieInfo.vote_count}
                                     released={movieInfo.release_date}
-                                    img={`https://image.tmdb.org/t/p/w500${movieInfo.backdrop_path}`}
+                                    img={
+                                        movieInfo.backdrop_path ? 
+                                        `https://image.tmdb.org/t/p/w500${movieInfo.backdrop_path}` :
+                                        alt_img
+                                    }
                                 />
                             )
-                        } else { return null}
                     })
                 ) : <h1 style={{color:'wheat'}}>No tienes favoritos</h1> :
                 <h1 style={{color:'wheat'}}>Loading ...</h1>

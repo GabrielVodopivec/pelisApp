@@ -286,3 +286,10 @@ header {
     content: "  Remove from favs";
     color: blanchedalmond;
 }
+
+.formikForm {
+    box-sizing: border-box;
+    padding: 0 10px;
+    width: 100%;
+
+}

@@ -1,5 +1,5 @@
+import FormikForm from "../../components/FormikFormLogin"
+
 export default function FormikLogin() {
-    return (
-        <h1>Formik Login</h1>
-    )
+    return <FormikForm />
 }
