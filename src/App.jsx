@@ -32,19 +32,12 @@ export default function App() {
     const element = useRoutes([{
         path: '/',
         element: <Home />,
-        errorElement:
-            <ErrorBoundary>
-                <Suspense fallback={<h1>Loading...</h1>}>
-                    <Notfound />
-                </Suspense>
-            </ErrorBoundary>,
         children: [{
             index: true,
             element: <HomeCarousel />
         }, {
             path: 'login',
-            element:
-                <Login />
+            element: <Login />
         }, {
             path: 'formik-login',
             element: <FormikLogin />
@@ -53,13 +46,7 @@ export default function App() {
             element: <FormikRegister />
         }, {
             path: 'movies',
-            element: <Movies />,
-            errorElement:
-                <ErrorBoundary>
-                    <Suspense fallback={<h1>Loading...</h1>}>
-                        <Notfound />
-                    </Suspense>
-                </ErrorBoundary>,
+            element: <Movies />
         }, {
             path: 'series',
             element: <Series />
@@ -79,11 +66,21 @@ export default function App() {
         }, {
             path: 'favorites',
             element: <Favorites />
+        }, {
+            path: '*',
+            element:
+                <ErrorBoundary>
+                    <Suspense fallback={<h1 className='text-center' style={{color: 'wheat'}}>Loading...</h1>}>
+                        <Notfound />
+                    </Suspense>
+                </ErrorBoundary>
         }]
     }])
 
     const location = useLocation();
+
     if (!element) return null;
+
 
     return (
         <AnimatePresence mode='wait'>
