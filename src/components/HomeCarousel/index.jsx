@@ -100,5 +100,5 @@ export default function HomeCarousel() {
         </div>
     )
 
-    return loading ? <h1>Loading...</h1> : carousels;
+    return loading ? null : carousels;
 }

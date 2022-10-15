@@ -17,10 +17,12 @@ import SearchResults from './views/SearchResults';
 import Favorites from './views/Favorites';
 import Detail from './views/Detail';
 
+// Test React.lazy() and ErrorBoundary;
 const Notfound = React.lazy(() => {
     const myPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(import('./views/NotFound'));
+            // reject('Something went wrong');
         }, 3000);
     });
     return myPromise
@@ -69,11 +71,9 @@ export default function App() {
         }, {
             path: '*',
             element:
-                <ErrorBoundary>
-                    <Suspense fallback={<h1 className='text-center' style={{color: 'wheat'}}>Loading...</h1>}>
-                        <Notfound />
-                    </Suspense>
-                </ErrorBoundary>
+                <Suspense fallback={<h1 className='text-center' style={{ color: 'wheat' }}>Loading...</h1>}>
+                    <Notfound />
+                </Suspense>
         }]
     }])
 
@@ -83,8 +83,10 @@ export default function App() {
 
 
     return (
-        <AnimatePresence mode='wait'>
-            {React.cloneElement(element, { key: location.pathname })}
-        </AnimatePresence>
+        <ErrorBoundary>
+            <AnimatePresence mode='wait'>
+                {React.cloneElement(element, { key: location.pathname })}
+            </AnimatePresence>
+        </ErrorBoundary>
     )
 }
