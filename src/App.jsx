@@ -27,7 +27,7 @@ const Notfound = React.lazy(() => {
 })
 
 export default function App() {
-
+    !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify({}));
 
     const element = useRoutes([{
         path: '/',
