@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 // Libraries
 import axios from "axios";
 
@@ -9,20 +10,20 @@ import { caruselItemMaper } from "../../services/carouselServices";
 export default function HomeCarousel() {
 
     const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
-    let [popularMovies, setPopularMovies] = useState([]);
+    let [popularMovies, setPopularMovies] = useState(null);
+    let [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!popularMovies.length) {
-            axios(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
-                .then(({ data }) => {
-                    const { results } = data;
-                    setPopularMovies(results)
-                })
-                .catch(({ response }) => {
-                    console.log(response.data)
-                })
-        }
-    }, [popularMovies.length])
+        axios(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
+            .then(({ data }) => {
+                const { results } = data;
+                setPopularMovies(results);
+                setLoading(false);
+            })
+            .catch(({ response }) => {
+                console.log(response.data)
+            })
+    }, [])
 
     console.log('re-render')
 
@@ -33,10 +34,12 @@ export default function HomeCarousel() {
                     <div className="col-lg-4 py-2 align-content-end">
                         <Link to='series'>
                             {
-                                popularMovies.length ?
+                                popularMovies ?
                                     <div id="carouselExampleInterval1" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner ">
-                                            {caruselItemMaper(popularMovies, "Series")}
+                                            {
+                                                caruselItemMaper(popularMovies, "Series")
+                                            }
                                         </div>
                                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval1" data-bs-slide="prev">
                                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -50,10 +53,11 @@ export default function HomeCarousel() {
                             }
                         </Link>
                     </div>
+
                     <div className="col-lg-4 py-2 align-content-end">
                         <Link to={'movies'}>
                             {
-                                popularMovies.length ?
+                                popularMovies ?
                                     <div id="carouselExampleInterval2" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner ">
                                             {caruselItemMaper(popularMovies, "Movies")}
@@ -70,10 +74,11 @@ export default function HomeCarousel() {
                             }
                         </Link>
                     </div>
+
                     <div className="col-lg-4 py-2 align-content-end">
                         <Link to='documentals'>
                             {
-                                popularMovies.length ?
+                                popularMovies ?
                                     <div id="carouselExampleInterval3" className="carousel slide" data-bs-ride="carousel">
                                         <div className="carousel-inner ">
                                             {caruselItemMaper(popularMovies, "Documentals")}
@@ -90,11 +95,10 @@ export default function HomeCarousel() {
                             }
                         </Link>
                     </div>
-
                 </div>
             </div>
         </div>
     )
 
-    return carousels;
+    return loading ? <h1>Loading...</h1> : carousels;
 }

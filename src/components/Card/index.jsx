@@ -2,6 +2,24 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import { v4 as uuidv4 } from 'uuid';
 
+import { motion } from 'framer-motion';
+
+// Framer motion
+const pageTransition = {
+    in: {
+        opacity: 1,
+        transition: {
+            duration: 1
+        }
+    },
+    out: {
+        opacity: 0,
+        transition: {
+            duration: 1
+        }
+    }
+}
+
 function Card(props) {
 
     let stars = Array(Math.floor(props.votes)).fill(' ⭐ ');
@@ -57,7 +75,13 @@ function Card(props) {
     }, [props.id])
 
     return (
-        <div className="card cardContainer bg-dark" >
+
+        <motion.div
+            className='card cardContainer bg-dark'
+            initial='out'
+            animate='in'
+            exit='out'
+            variants={pageTransition}>
             <div className="imgOverflow">
                 <img src={props.img} className="card-img-top" alt="movie" />
             </div>
@@ -89,7 +113,8 @@ function Card(props) {
             <div className="card-body">
                 <Link className="btn w-100 btn-secondary" to={`/detail/${props.id}`}>View Detail</Link>
             </div>
-        </div>
+        </motion.div >
+
     )
 }
 

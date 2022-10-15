@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { motion } from 'framer-motion';
+
 // libraries
 import Swal from "sweetalert2";
 import axios from 'axios';
@@ -14,12 +14,6 @@ import { setToken } from '../../app/actions';
 
 // Services
 // import { formValidation } from '../../services'
-
-// Framer motion
-const pageTransition = {
-    in: { opacity: 1 },
-    out: { opacity: 0 }
-}
 
 function Login() {
     const dispatch = useDispatch();
@@ -119,16 +113,8 @@ function Login() {
         handleBlur
     }
 
-    return (
-        <motion.div
-            initial='out'
-            animate='in'
-            exit='out'
-            transition={{ duration: 1 }}
-            variants={pageTransition}>
-            <CustomForm {...customFormProps} />
-        </motion.div>
-    );
+    return <CustomForm {...customFormProps} />;
+
 }
 
 export default Login;
