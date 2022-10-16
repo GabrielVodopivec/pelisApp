@@ -60,8 +60,7 @@ function Card(props) {
         const infoToStoreToJSON = JSON.stringify(checkStore);
         localStorage.setItem('favs', infoToStoreToJSON);
 
-        console.log(JSON.parse(localStorage.getItem('favs')))
-
+        // console.log(JSON.parse(localStorage.getItem('favs')))
     }
 
     useEffect(() => {

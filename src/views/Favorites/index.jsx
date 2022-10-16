@@ -1,12 +1,20 @@
 
-
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { tokenSelector } from "../../app/selectors"
+import { motion } from "framer-motion";
+
+import { tokenSelector } from "../../app/selectors";
+
 import Card from "../../components/Card"
 
-import alt_img from '../../assets/images/alt-img-webp.webp'
+import alt_img from '../../assets/images/alt-img-webp.webp';
+
+// Framer motion
+const pageTransition = {
+    in: { opacity: 1 },
+    out: { opacity: 0 }
+}
 
 export default function Favorites() {
 
@@ -62,7 +70,15 @@ export default function Favorites() {
                                 )
                             })
                         )
-                            : <h1 style={{ color: 'wheat' }} className='text-center'>Seems like you don't like any movie...</h1>
+                            : <motion.div
+                                className="container text-center text-light pt-4"
+                                initial='out'
+                                animate='in'
+                                exit='out'
+                                transition={{ duration: 1 }}
+                                variants={pageTransition}>
+                                <h1>Seems like you don't like any movie...</h1>
+                            </motion.div>
                         : <h1 style={{ color: 'wheat' }}>Loading...</h1>
                     : null
             }

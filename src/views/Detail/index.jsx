@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 // Libraries
 import axios from 'axios';
@@ -8,33 +7,25 @@ import axios from 'axios';
 // Views
 import Notfound from "../NotFound";
 
-// Selectors
-import { tokenSelector } from "../../app/selectors"
-
 // Assets;
 import altImg from '../../assets/images/alt-img-webp.webp';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 export default function Detail() {
 
-    const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
-    const token = useSelector(tokenSelector);
-    const navigate = useNavigate();
-
     let { movie_id } = useParams();
+    const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
 
-    let [movieDetail, setMovieDetail] = useState(null);
+    let [movieDetail, setMovieDetail] = useState([]);
     let [error, setError] = useState(false);
 
     useEffect(() => {
 
-        if (!token) {
-            return navigate('/login');
-        }
-
-        const url = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
-        axios(url)
+        !movieDetail.length && axios(url)
             .then(({ data }) => {
-                setMovieDetail(data)
+                console.log('llamó')
+                setMovieDetail([data])
             })
             .catch(error => {
                 console.log(error)
@@ -43,35 +34,35 @@ export default function Detail() {
                 })
             })
 
-    }, [movie_id, token, navigate]);
+    }, [movie_id, movieDetail.length, url]);
 
-    console.log('re-render');
+    // console.log('re-render');
 
     if (error) return (<Notfound />);
 
     return (
         <>
             {
-                movieDetail
+                movieDetail.length
                     ? <div className="movieDetail">
                         <img
                             className="imgDetail"
                             src={
-                                movieDetail.backdrop_path ?
-                                    `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}` :
-                                    altImg
+                                movieDetail[0].backdrop_path
+                                    ? `https://image.tmdb.org/t/p/w500${movieDetail[0].backdrop_path}`
+                                    : altImg
                             } alt="movie" />
                         <div className="mainContent">
-                            <h1> {movieDetail.original_title} </h1>
-                            <span> Released Date: {movieDetail.release_date}</span>
+                            <h1> {movieDetail[0].original_title} </h1>
+                            <span> Released Date: {movieDetail[0].release_date}</span>
                             <div className="genresMainContent">
                                 {
-                                    movieDetail.genres?.map(genre => (
+                                    movieDetail[0].genres?.map(genre => (
                                         <span key={genre.id}>{genre.name}</span>
                                     ))
                                 }
                             </div>
-                            <p className="overviewMainContent">{movieDetail.overview}</p>
+                            <p className="overviewMainContent">{movieDetail[0].overview}</p>
                         </div>
                     </div>
                     : null

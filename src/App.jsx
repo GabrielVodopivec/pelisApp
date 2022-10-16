@@ -1,6 +1,6 @@
+import React, { Suspense, useState, useEffect } from 'react';
+import { useRoutes, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import React, { Suspense } from 'react';
-import { useRoutes, useLocation } from 'react-router-dom';
 
 // Views
 import Home from './views/Home';
@@ -16,6 +16,8 @@ import About from './views/About';
 import SearchResults from './views/SearchResults';
 import Favorites from './views/Favorites';
 import Detail from './views/Detail';
+import { useSelector } from 'react-redux';
+import { tokenSelector } from './app/selectors';
 
 // Test React.lazy() and ErrorBoundary;
 const Notfound = React.lazy(() => {
@@ -23,10 +25,26 @@ const Notfound = React.lazy(() => {
         setTimeout(() => {
             resolve(import('./views/NotFound'));
             // reject('Something went wrong');
-        }, 3000);
+        }, 2000);
     });
     return myPromise
 })
+
+// Centralized route protection;
+const ProtectedRoute = ({ children }) => {
+    const navigate = useNavigate();
+    const [auth, setAuth] = useState(null);
+    const token = useSelector(tokenSelector)
+
+    useEffect(() => {
+        if (!token) {
+            return navigate('/login')
+        }
+        setAuth(true)
+    }, [token, auth, navigate]);
+
+    return (auth ? children : null)
+}
 
 export default function App() {
     !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify({}));
@@ -48,19 +66,31 @@ export default function App() {
             element: <FormikRegister />
         }, {
             path: 'movies',
-            element: <Movies />
+            element:
+                <ProtectedRoute>
+                    <Movies />
+                </ProtectedRoute>
         }, {
             path: 'series',
-            element: <Series />
+            element:
+                <ProtectedRoute>
+                    <Series />
+                </ProtectedRoute>
         }, {
             path: 'documentals',
-            element: <Documentals />
+            element:
+                <ProtectedRoute>
+                    <Documentals />
+                </ProtectedRoute>
         }, {
             path: 'about',
             element: <About />
         }, {
             path: 'detail/:movie_id',
-            element: <Detail />,
+            element:
+                <ProtectedRoute>
+                    <Detail />
+                </ProtectedRoute>,
             errorElement: <Notfound />,
         }, {
             path: 'results',
@@ -78,9 +108,8 @@ export default function App() {
     }])
 
     const location = useLocation();
-
+    // console.log('re-render');
     if (!element) return null;
-
 
     return (
         <ErrorBoundary>

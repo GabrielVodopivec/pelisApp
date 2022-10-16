@@ -1,5 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 
 import { deleteToken } from "../../app/actions";
@@ -35,14 +35,14 @@ const Home = () => {
     return (
         <>
             <Header handleClick={handleClick} token={token} />
-            <motion.div
-                className="outlet"
-                initial='out'
-                animate='in'
-                exit='out'
-                variants={pageTransition}>
-                <Outlet />
-            </motion.div>
+             <motion.div
+                        className="outlet"
+                        initial='out'
+                        animate='in'
+                        exit='out'
+                        variants={pageTransition}>
+                        <Outlet />
+                    </motion.div>
             <Footer />
         </>
     )

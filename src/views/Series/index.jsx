@@ -1,11 +1,4 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
-
 import { motion } from 'framer-motion';
-
-// Selectors
-import { tokenSelector } from "../../app/selectors"
 
 // Framer motion
 const pageTransition = {
@@ -14,23 +7,16 @@ const pageTransition = {
 }
 
 export default function Series() {
-    const token = useSelector(tokenSelector);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (!token) {
-            return navigate('/login');
-        }
-    }, [token, navigate]);
 
     const series = (
         <motion.div
+            className="container text-center text-light pt-4"
             initial='out'
             animate='in'
             exit='out'
             transition={{ duration: 1 }}
             variants={pageTransition}>
-            <h1 style={{ textAlign: "center", color: "wheat" }}>Series coming soon...</h1>
+            <h1>Series coming soon...</h1>
         </motion.div>
     );
 
