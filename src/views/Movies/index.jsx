@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 
 // Libraries
 import axios from 'axios';
-// import Swal from "sweetalert2";
 
+// Components
 import Card from "../../components/Card";
 
-import alt_img from '../../assets/images/alt-img-webp.webp'
-const API_KEY = 'a04a68419e3fe121fef2adc2e7039e61';
+// Assets (alt img)
+import alt_img from '../../assets/images/alt-img-webp.webp';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 function Movies() {
 
@@ -19,7 +21,6 @@ function Movies() {
 
         axios.get(endpoint)
             .then(({ data }) => {
-                console.log('llamó')
                 const { results } = data;
                 setMovies(results)
             })
@@ -29,7 +30,7 @@ function Movies() {
 
     }, [])
 
-    console.log('re-render');
+    // console.log('re-render');
 
     return (
         <div className="movieContainer">

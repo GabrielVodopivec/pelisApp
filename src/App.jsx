@@ -1,11 +1,14 @@
-import React, { Suspense, useState, useEffect } from 'react';
-import { useRoutes, useLocation, useNavigate } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { useRoutes, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+
+// Components
+import ProtectedRoute from './components/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary';
+import HomeCarousel from './components/HomeCarousel';
 
 // Views
 import Home from './views/Home';
-import ErrorBoundary from './components/ErrorBoundary';
-import HomeCarousel from './components/HomeCarousel';
 import Login from './views/Login';
 import FormikLogin from './views/FormikLogin';
 import FormikRegister from './views/FormikRegister';
@@ -16,8 +19,6 @@ import About from './views/About';
 import SearchResults from './views/SearchResults';
 import Favorites from './views/Favorites';
 import Detail from './views/Detail';
-import { useSelector } from 'react-redux';
-import { tokenSelector } from './app/selectors';
 
 // Test React.lazy() and ErrorBoundary;
 const Notfound = React.lazy(() => {
@@ -30,25 +31,10 @@ const Notfound = React.lazy(() => {
     return myPromise
 })
 
-// Centralized route protection;
-const ProtectedRoute = ({ children }) => {
-    const navigate = useNavigate();
-    const [auth, setAuth] = useState(null);
-    const token = useSelector(tokenSelector)
-
-    useEffect(() => {
-        if (!token) {
-            return navigate('/login')
-        }
-        setAuth(true)
-    }, [token, auth, navigate]);
-
-    return (auth ? children : null)
-}
-
 export default function App() {
-    !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify({}));
+    !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify([]));
 
+    // The return value of useRoutes is either a valid React element you can use to render the route tree, or null if nothing matched.
     const element = useRoutes([{
         path: '/',
         element: <Home />,
@@ -94,23 +80,29 @@ export default function App() {
             errorElement: <Notfound />,
         }, {
             path: 'results',
-            element: <SearchResults />
+            element:
+                <ProtectedRoute>
+                    <SearchResults />
+                </ProtectedRoute>
         }, {
             path: 'favorites',
-            element: <Favorites />
-        }, {
-            path: '*',
             element:
-                <Suspense fallback={<h1 className='text-center' style={{ color: 'wheat' }}>Loading...</h1>}>
-                    <Notfound />
-                </Suspense>
+                <ProtectedRoute>
+                    <Favorites />
+                </ProtectedRoute>
         }]
     }])
 
     const location = useLocation();
+    
+    if (!element) return (
+        <Suspense fallback={<h1 className='text-center' style={{ color: 'wheat' }}>Loading...</h1>}>
+            <Notfound />
+        </Suspense>
+    );
+    
     // console.log('re-render');
-    if (!element) return null;
-
+    
     return (
         <ErrorBoundary>
             <AnimatePresence mode='wait'>

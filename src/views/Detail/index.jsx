@@ -24,7 +24,6 @@ export default function Detail() {
 
         !movieDetail.length && axios(url)
             .then(({ data }) => {
-                console.log('llamó')
                 setMovieDetail([data])
             })
             .catch(error => {

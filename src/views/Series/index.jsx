@@ -14,7 +14,7 @@ export default function Series() {
             initial='out'
             animate='in'
             exit='out'
-            transition={{ duration: 1 }}
+            transition={{ duration: .2 }}
             variants={pageTransition}>
             <h1>Series coming soon...</h1>
         </motion.div>

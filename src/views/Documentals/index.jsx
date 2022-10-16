@@ -14,7 +14,7 @@ export default function Documentals() {
             initial='out'
             animate='in'
             exit='out'
-            transition={{ duration: 1 }}
+            transition={{ duration: .2 }}
             variants={pageTransition}>
             <h1>Documentals coming soon...</h1>
         </motion.div>

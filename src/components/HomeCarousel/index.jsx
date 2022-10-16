@@ -17,6 +17,7 @@ export default function HomeCarousel() {
         axios(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
             .then(({ data }) => {
                 const { results } = data;
+                console.log('llamo')
                 setPopularMovies(results);
                 setLoading(false);
             })
@@ -25,7 +26,7 @@ export default function HomeCarousel() {
             })
     }, [])
 
-    console.log('re-render')
+    // console.log('re-render')
 
     const carousels = (
         <div className="previewContainer" >

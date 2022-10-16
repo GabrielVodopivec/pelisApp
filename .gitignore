@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-.algo.js
+/algo.js
 
 # production
 /build
