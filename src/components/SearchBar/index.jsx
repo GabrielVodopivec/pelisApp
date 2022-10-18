@@ -16,13 +16,10 @@ export default function SearchBar() {
         event.preventDefault();
         const cleanWord = keyWord.trim();
 
-        if (cleanWord.length === 0) {
-
-            Swal.fire({
+        if (cleanWord.length === 0) 
+            return Swal.fire({
                 title: 'Nothing to search'
             });
-
-        }
         
         setKeyWord('');
         navigate(`results?s=${cleanWord}`)

@@ -16,16 +16,12 @@ export default function useCardFavorite(props) {
             }
         };
 
-        !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify({}));
-
         let checkStore = JSON.parse(localStorage.getItem('favs'));
 
         if (!checkStore[props.id]) {
             checkStore = {
                 ...checkStore,
-                [props.id]: {
-                    ...elemenToStore[props.id]
-                }
+                ...elemenToStore
             }
             setFav(() => true);
 
@@ -37,17 +33,16 @@ export default function useCardFavorite(props) {
         const infoToStoreToJSON = JSON.stringify(checkStore);
         localStorage.setItem('favs', infoToStoreToJSON);
 
-        // console.log(JSON.parse(localStorage.getItem('favs')))
+        console.log(JSON.parse(localStorage.getItem('favs')))
     }
 
     useEffect(() => {
-        let getFavs = localStorage.getItem('favs');
-        if (getFavs) {
-            let getFavsToObj = JSON.parse(getFavs);
-            if (getFavsToObj[props.id]) {
-                setFav(getFavsToObj[props.id].isFav)
+        let getFavs = JSON.parse(localStorage.getItem('favs'));
+      
+            if (getFavs[props.id]) {
+                setFav(getFavs[props.id].isFav)
             }
-        }
+        
     }, [props.id])
 
     return { fav, addOrRemovefavs }

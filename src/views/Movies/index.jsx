@@ -1,36 +1,12 @@
-import { useEffect, useState } from "react";
-
-// Libraries
-import axios from 'axios';
-
 // Components
 import Card from "../../components/Card";
 
 // Assets (alt img)
 import alt_img from '../../assets/images/alt-img-webp.webp';
-
-const API_KEY = process.env.REACT_APP_API_KEY;
+import useMovieLoader from "./hook";
 
 function Movies() {
-
-    let [movies, setMovies] = useState(null);
-
-    useEffect(() => {
-
-        const endpoint = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`;
-
-        axios.get(endpoint)
-            .then(({ data }) => {
-                const { results } = data;
-                setMovies(results)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-
-    }, [])
-
-    // console.log('re-render');
+    const movies = useMovieLoader();
 
     return (
         <div className="movieContainer">

@@ -11,14 +11,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 #root {
+    
     background-image: url('../assets/images/tickets-webp.webp');
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-
     height: 100%;
     min-height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,6 +29,7 @@ header {
 }
 
 .outlet {
+    background-color: rgba(0, 0, 0, 0.735);
     width: 100%;
     flex-grow: 1;
 }
@@ -218,9 +218,9 @@ header {
     padding: 2em;
     width: 100%;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
 }
 
 /* Card Component Styles --------------------------------------------*/

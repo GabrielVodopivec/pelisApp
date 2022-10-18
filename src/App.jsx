@@ -32,7 +32,7 @@ const Notfound = React.lazy(() => {
 })
 
 export default function App() {
-    !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify([]));
+    !localStorage.getItem('favs') && localStorage.setItem('favs', JSON.stringify({}));
 
     // The return value of useRoutes is either a valid React element you can use to render the route tree, or null if nothing matched.
     const element = useRoutes([{

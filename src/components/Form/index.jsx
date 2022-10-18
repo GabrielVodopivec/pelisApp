@@ -50,11 +50,12 @@ function CustomForm(props) {
                                 Password
                             </label>
                             {
-                                props.errors.password ?
-                                    <span style={{ color: "red" }}>
+                                props.errors.password
+                                    ? <span style={{ color: "red" }}>
                                         {props.errors.password}
-                                    </span> :
-                                    null}
+                                    </span>
+                                    : null
+                            }
                         </div>
                         <div className="mb-2">
                             <input

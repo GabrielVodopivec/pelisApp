@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 
 import Card from "../../components/Card"
 
-import alt_img from '../../assets/images/alt-img-webp.webp';
 import useFavoritesLoader from "./hooks";
 
 // Framer motion
@@ -29,11 +28,7 @@ export default function Favorites() {
                                     votes={movieInfo.vote_average}
                                     votesQuantity={movieInfo.vote_count}
                                     released={movieInfo.release_date}
-                                    img={
-                                        movieInfo.backdrop_path ?
-                                            `https://image.tmdb.org/t/p/w500${movieInfo.backdrop_path}` :
-                                            alt_img
-                                    }
+                                    img={movieInfo.backdrop_path}
                                 />
                             )
                         })

@@ -95,10 +95,16 @@ function Login() {
                 dispatch(setToken(token))
                 navigate('/movies')
             })
-            .catch(({ response }) => {
-                const { data } = response;
+            .catch((error) => {
+
+                const errorMessage = (
+                    error.response
+                    && error.response.data
+                    && error.respnse.data.message
+                ) || error.message
+
                 Swal.fire({
-                    title: data.message,
+                    title: errorMessage,
                     icon: 'error'
                 })
             })

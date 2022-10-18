@@ -35,14 +35,15 @@ const Home = () => {
     return (
         <>
             <Header handleClick={handleClick} token={token} />
-             <motion.div
-                        className="outlet"
-                        initial='out'
-                        animate='in'
-                        exit='out'
-                        variants={pageTransition}>
-                        <Outlet />
-                    </motion.div>
+            <motion.div
+                className="outlet"
+                initial='out'
+                animate='in'
+                exit='out'
+                transition={{ duration: 0.3 }}
+                variants={pageTransition}>
+                <Outlet />
+            </motion.div>
             <Footer />
         </>
     )
