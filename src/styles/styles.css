@@ -193,6 +193,13 @@ header {
 }
 
 /* Footer Styles --------------------------------------------*/
+.wraper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100%;
+}
 
 .footer {
     box-sizing: border-box;
@@ -223,6 +230,9 @@ header {
 }
 
 .github {
+    display: flex;
+    justify-content: center;
+    align-content: center;
     height: 50px;
     width: 50px;
     font-size: 0px;
@@ -231,6 +241,10 @@ header {
     background-image: url("../assets/images/github.png");
     background-position: center;
     background-size: cover;
+}
+.github a {
+    width: 50px;
+    height: 50px;
 }
 
 /* Movies View Styles --------------------------------------------*/
