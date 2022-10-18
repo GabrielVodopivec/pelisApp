@@ -199,10 +199,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     height: 70px;
     width: 100%;
-    padding-top: 5px;
+    padding: 0 5px;
     background-color: #212529;
     color: antiquewhite;
     font-size: 16px;
@@ -217,9 +217,20 @@ header {
     margin: 0;
 }
 
-.footer img {
-    padding: 5px 10px;
+.footer img:not(.github) {
+    padding: 5px 0;
     height: 60px;
+}
+
+.github {
+    height: 50px;
+    width: 50px;
+    font-size: 0px;
+    border: 2px solid wheat;
+    border-radius: 999px;
+    background-image: url("../assets/images/github.png");
+    background-position: center;
+    background-size: cover;
 }
 
 /* Movies View Styles --------------------------------------------*/
