@@ -8,7 +8,7 @@ export default function Footer() {
                 </a>
             </div>
             <div className="wraper">
-                <p> Gabriel Vodopivec</p>
+                <p>Gabriel Vodopivec</p>
             </div>
             <div className="wraper">
                 <a className='github' href="https://github.com/GabrielVodopivec" target="_blank" rel="noopener noreferrer">

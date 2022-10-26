@@ -12,13 +12,13 @@ const pageTransition = {
     in: {
         opacity: 1,
         transition: {
-            duration: 1
+            duration: .5
         }
     },
     out: {
         opacity: 0,
         transition: {
-            duration: 1
+            duration: .3
         }
     }
 }
@@ -40,7 +40,6 @@ const Home = () => {
                 initial='out'
                 animate='in'
                 exit='out'
-                transition={{ duration: 0.3 }}
                 variants={pageTransition}>
                 <Outlet />
             </motion.div>

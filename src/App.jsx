@@ -94,15 +94,15 @@ export default function App() {
     }])
 
     const location = useLocation();
-    
+
     if (!element) return (
         <Suspense fallback={<h1 className='text-center' style={{ color: 'wheat' }}>Loading...</h1>}>
             <Notfound />
         </Suspense>
     );
-    
+
     // console.log('re-render');
-    
+
     return (
         <ErrorBoundary>
             <AnimatePresence mode='wait'>
