@@ -102,6 +102,8 @@ function Login() {
                 ) || error.message
 
                 Swal.fire({
+                    color:`antiquewhite`,
+                    background: `#212529`,
                     title: errorMessage,
                     icon: 'error'
                 })
