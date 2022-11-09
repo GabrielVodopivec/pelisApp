@@ -1,7 +1,7 @@
 function CustomForm(props) {
     return (
 
-        <div className="customForm">
+        <div className={props.isSubmitting ? `pulse customForm` : `customForm`}>
 
             <form
                 onSubmit={props.handleSubmit}
@@ -77,9 +77,11 @@ function CustomForm(props) {
                             type="submit"
                             className="btn btn-secondary w-100 mb-2"
                             disabled={
-                                props.errors.email ||
-                                    !props.email ||
-                                    !props.password ? true : false}
+                                props.isSubmitting
+                                    || props.errors.email
+                                    || !props.email
+                                    || !props.password ? true : false
+                            }
                         >
                             Login
                         </button>

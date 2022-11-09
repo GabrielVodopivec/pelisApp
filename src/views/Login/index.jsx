@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ import { setToken } from '../../app/actions';
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isSubmitting, setIsSubmmiting] = useState(false);
 
     const [userInfo, setUserInfo] = React.useState({
         email: 'fakeuser@mail.com',
@@ -88,19 +90,20 @@ function Login() {
         // challenge@alkemy.org
         // react
 
+        setIsSubmmiting(() => (true))
         axios.post('https://goalsappgvs.herokuapp.com/api/users/login', { email, password })
             .then(({ data }) => {
+                setIsSubmmiting(() => (false))
                 const { token } = data;
                 localStorage.setItem('token', token)
                 dispatch(setToken(token))
                 navigate('/movies')
             })
             .catch((error) => {
-
+                
+                setIsSubmmiting(() => (false))
                 const errorMessage = (
-                    error.response
-                    && error.response.data
-                    && error.respnse.data.message
+                error.response?.data?.message
                 ) || error.message
 
                 Swal.fire({
@@ -111,6 +114,7 @@ function Login() {
     }
 
     const customFormProps = {
+        isSubmitting,
         email: userInfo.email,
         password: userInfo.password,
         errors: userInfo.error,

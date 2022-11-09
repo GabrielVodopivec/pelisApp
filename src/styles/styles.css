@@ -329,3 +329,23 @@ header {
     width: 100%;
 
 }
+
+/* Animacion submitting */
+@keyframes pulse-animation {
+    0% {
+        opacity: .8;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: .8;
+    }
+}
+
+.pulse {
+    animation: pulse-animation 1s ease-out alternate;
+    animation-iteration-count: infinite;
+}
