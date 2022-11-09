@@ -35,12 +35,7 @@ function Login() {
         setUserInfo((prevUserInfo) => {
             return {
                 ...prevUserInfo,
-                [name]: value
-            }
-        })
-        setUserInfo((prevUserInfo) => {
-            return {
-                ...prevUserInfo,
+                [name]: value,
                 error: {
                     ...prevUserInfo.error,
                     [name]: ''
@@ -100,10 +95,10 @@ function Login() {
                 navigate('/movies')
             })
             .catch((error) => {
-                
+
                 setIsSubmmiting(() => (false))
                 const errorMessage = (
-                error.response?.data?.message
+                    error.response?.data?.message
                 ) || error.message
 
                 Swal.fire({

@@ -11,7 +11,7 @@ export default function Footer() {
                 <p>Gabriel Vodopivec</p>
             </div>
             <div className="wraper">
-                <a className='github' href="https://github.com/GabrielVodopivec" target="_blank" rel="noopener noreferrer">
+                <a className='github' href="https://github.com/GabrielVodopivec/pelisApp" target="_blank" rel="noopener noreferrer">
                     github
                 </a>
             </div>
