@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 // libraries
 import Swal from "sweetalert2";
-import axios from 'axios';
+// import axios from 'axios';
 
 // Components
 import CustomForm from "../../components/Form";
@@ -79,14 +79,23 @@ function Login() {
         }
     }
 
+    const fakeLogin = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({ data: { token: "asdf698bfk!!kjsdfk" } })
+            }, 1000)
+        })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        const { email, password } = userInfo;
+        // const { email, password } = userInfo;
         // challenge@alkemy.org
         // react
 
         setIsSubmmiting(() => (true))
-        axios.post('https://goalsappgvs.herokuapp.com/api/users/login', { email, password })
+        // axios.post('https://goalsappgvs.herokuapp.com/api/users/login', { email, password })
+        fakeLogin()
             .then(({ data }) => {
                 setIsSubmmiting(() => (false))
                 const { token } = data;
@@ -102,7 +111,7 @@ function Login() {
                 ) || error.message
 
                 Swal.fire({
-                    color:`antiquewhite`,
+                    color: `antiquewhite`,
                     background: `#212529`,
                     title: errorMessage,
                     icon: 'error'
